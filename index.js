@@ -15,12 +15,12 @@ const managerQs = [
   {
     type: "input",
     name: "name",
-    message: "Who is the manager of this team?",
+    message: "Who is the manager of this team? ",
     validate: (nameInput) => {
       if (nameInput) {
         return true;
       } else {
-        console.log("Please enter the name of team manager");
+        console.log("Please enter the name of team manager.");
         return false;
       }
     },
@@ -30,10 +30,10 @@ const managerQs = [
   {
     type: "input",
     name: "id",
-    message: "What is the manager's ID?",
+    message: "What is the manager's ID? ",
     validate: (idInput) => {
       if (isNaN(idInput)) {
-        console.log("Please enter the manager's ID");
+        console.log("Please enter the manager's ID.");
         return false;
       } else {
         return true;
@@ -45,13 +45,13 @@ const managerQs = [
   {
     type: "input",
     name: "email",
-    message: "What is the manager's contact email?",
+    message: "What is the manager's contact email? ",
     validate: (emailInput) => {
       check = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/i.test(emailInput);
       if (check) {
         return true;
       } else {
-        console.log("Please enter an valid email");
+        console.log("Please enter an valid email.");
         return false;
       }
     },
@@ -61,10 +61,10 @@ const managerQs = [
   {
     type: "input",
     name: "officeNumber",
-    message: "What's the manager's office number",
+    message: "What's the manager's office number? ",
     validate: (officeNInput) => {
       if (isNaN(officeNInput)) {
-        console.log("Please enter the manager's office number");
+        console.log("Please enter the manager's office number.");
         return false;
       } else {
         return true;
@@ -79,7 +79,7 @@ const employeeQs = [
   {
     type: "list",
     name: "role",
-    message: "Please select the employee's role",
+    message: "Please select the employee's role.",
     choices: ["Engineer", "Intern"],
   },
 
@@ -87,12 +87,12 @@ const employeeQs = [
   {
     type: "input",
     name: "name",
-    message: "Please enter the name of employee",
+    message: "Please enter the name of employee: ",
     validate: (nameInput) => {
       if (nameInput) {
         return true;
       } else {
-        console.log("Please enter the name of employee");
+        console.log("Please enter the name of employee.");
         return false;
       }
     },
@@ -102,10 +102,10 @@ const employeeQs = [
   {
     type: "input",
     name: "id",
-    message: "Please enter the employee's ID",
+    message: "Please enter the employee's ID: ",
     validate: (idInput) => {
       if (isNaN(idInput)) {
-        console.log("Please enter the employee's ID");
+        console.log("Please enter the employee's ID.");
         return false;
       } else {
         return true;
@@ -117,13 +117,13 @@ const employeeQs = [
   {
     type: "input",
     name: "email",
-    message: "Please enter the employee's email",
+    message: "Please enter the employee's email: ",
     validate: (emailInput) => {
       check = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/i.test(emailInput);
       if (check) {
         return true;
       } else {
-        console.log("Please enter an valid email");
+        console.log("Please enter an valid email.");
         return false;
       }
     },
@@ -133,12 +133,13 @@ const employeeQs = [
   {
     type: "input",
     name: "github",
-    message: "Please enter the employee's Github name",
+    message: "Please enter the employee's Github name: ",
+    when: (input) => input.role === "Engineer",
     validate: (githubInput) => {
       if (githubInput) {
         return true;
       } else {
-        console.log("Please enter the employee's Github name");
+        console.log("Please enter the employee's Github name.");
         return false;
       }
     },
@@ -148,12 +149,13 @@ const employeeQs = [
   {
     type: "input",
     name: "school",
-    message: "Please enter the employee's alma mater",
+    message: "Please enter the employee's alma mater: ",
+    when: (input) => input.role === "Intern",
     validate: (githubInput) => {
       if (githubInput) {
         return true;
       } else {
-        console.log("Please enter the employee's alma mater");
+        console.log("Please enter the employee's alma mater.");
         return false;
       }
     },
@@ -178,9 +180,9 @@ const addManager = () => {
   return inquirer.prompt(managerQs).then((managerData) => {
     const { name, id, email, officeNumber } = managerData;
     const manager = new Manager(name, id, email, officeNumber);
-    console.log(manager);
+    // console.log(manager);
     teamArray.push(manager);
-    console.log(teamArray);
+    // console.log(teamArray);
   });
 };
 
@@ -198,16 +200,16 @@ const addEmployee = () => {
 
     if (role === "Engineer") {
       const engineer = new Engineer(name, id, email, github);
-      console.log(engineer);
+      //   console.log(engineer);
       teamArray.push(engineer);
-      console.log(teamArray);
+      //   console.log(teamArray);
     }
 
     if (role === "Intern") {
       const intern = new Intern(name, id, email, school);
-      console.log(intern);
+      //   console.log(intern);
       teamArray.push(intern);
-      console.log(teamArray);
+      //   console.log(teamArray);
     }
 
     if (addMoreEmployee) {

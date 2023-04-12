@@ -68,12 +68,12 @@ generatePage = (data) => {
     }
 
     if (role === "Engineer") {
-      const engineerCard = generateManager(employee);
+      const engineerCard = generateEngineer(employee);
       cardArray.push(engineerCard);
     }
 
     if (role === "Intern") {
-      const internCard = generateManager(employee);
+      const internCard = generateIntern(employee);
       cardArray.push(internCard);
     }
   }
